@@ -122,9 +122,9 @@ cd fabric-samples/test-network
 ./network.sh up createChannel -ca -c mychannel -s couchdb 
 ./network.sh deployCC -ccn token_erc721 -ccp /root/nft-erc721/chaincode-javascript -ccl javascript
 ```
-## Mint NFT: https://github.com/wan-yong/nft-erc721
+## Mint NFT
 ```
-git clone https://github.com/wan-yong/nft-erc721.git
+git clone https://github.com/ducthanh98/nft-erc721
 cd ./application
 npm install
 npm link
