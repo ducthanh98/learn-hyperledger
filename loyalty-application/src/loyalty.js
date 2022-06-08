@@ -100,7 +100,7 @@ class Loyalty {
     }
 
     async earnPoint(options){
-        console.log('\n--> Submit Transaction: EarnPoints');
+        console.log('\n--> Submit Transaction: EarnPoints',options);
         const resultBuf = await this.contract.submitTransaction('EarnPoints', JSON.stringify(options));
         console.log('*** Result: committed');
         if (`${resultBuf}` !== '') {
@@ -110,7 +110,7 @@ class Loyalty {
     }
 
     async getPoint(member){
-        console.log('\n--> Evaluate Transaction: EarnPoints');
+        console.log('\n--> Evaluate Transaction: EarnPoints',member);
         let userPoint = await this.contract.evaluateTransaction('GetState', member);
         userPoint = JSON.parse(userPoint)
 
