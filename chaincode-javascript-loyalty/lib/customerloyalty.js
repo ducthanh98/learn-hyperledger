@@ -137,7 +137,7 @@ class CustomerLoyalty extends Contract {
     // get the state from key
     async GetState(ctx, key) {
         let data = await ctx.stub.getState(key);
-        console.log('==== Get State  ==== ',key,data.toString())
+        console.log('==== Get State  ==== 9999 ',key,data.toString())
 
         let jsonData = JSON.parse(data.toString());
         return JSON.stringify(jsonData);
