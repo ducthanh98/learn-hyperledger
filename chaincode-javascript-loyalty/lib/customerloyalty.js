@@ -52,12 +52,16 @@ class CustomerLoyalty extends Contract {
         earnPoints.transactionId = ctx.stub.txId;
 
         let member = await ctx.stub.getState(earnPoints.member);
-        member = JSON.parse(member);
+        console.log('==== EarnPoints member  ==== ',earnPoints.member,member.toString())
+
+        member = JSON.parse(member.toString());
         member.points += earnPoints.points;
         await ctx.stub.putState(earnPoints.member, Buffer.from(JSON.stringify(member)));
 
         let earnPointsTransactions = await ctx.stub.getState(earnPointsTransactionsKey);
-        earnPointsTransactions = JSON.parse(earnPointsTransactions);
+        console.log('==== EarnPoints earnPointsTransactions  ==== ',earnPoints.member,earnPointsTransactions.toString())
+
+        earnPointsTransactions = JSON.parse(earnPointsTransactions.toString());
         earnPointsTransactions.push(earnPoints);
         await ctx.stub.putState(earnPointsTransactionsKey, Buffer.from(JSON.stringify(earnPointsTransactions)));
 
@@ -89,6 +93,7 @@ class CustomerLoyalty extends Contract {
     // Get earn points transactions of the particular member or partner
     async EarnPointsTransactionsInfo(ctx, userType, userId) {
         let transactions = await ctx.stub.getState(earnPointsTransactionsKey);
+        console.log('==== EarnPointsTransactionsInfo  ==== ',userId,transactions.toString())
         transactions = JSON.parse(transactions.toString());
         let userTransactions = [];
 
@@ -110,6 +115,7 @@ class CustomerLoyalty extends Contract {
     // Get use points transactions of the particular member or partner
     async UsePointsTransactionsInfo(ctx, userType, userId) {
         let transactions = await ctx.stub.getState(usePointsTransactionsKey);
+
         transactions = JSON.parse(transactions);
         let userTransactions = [];
 
