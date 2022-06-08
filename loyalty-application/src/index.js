@@ -66,7 +66,7 @@ async function earnPoint( member,points) {
     const loyalty = await CreateLoyalty()
 
     const result = await loyalty.earnPoint({member ,points})
-    console.log('🌿  Earn point : ', result)
+    console.log('🌿  Earn point : ', JSON.parse(result))
 
     loyalty.disconnect()
 }
@@ -79,15 +79,6 @@ async function getPoint( member) {
         ['Point:', chalk.green(JSON.stringify(userPoint))],
         ['Logs:', chalk.blue(JSON.userLog)],
     ])
-
-    loyalty.disconnect()
-}
-
-async function getUser( member,points) {
-    const loyalty = await CreateLoyalty()
-
-    const result = await loyalty.earnPoint({member ,points})
-    console.log('🌿  Earn point : ', result)
 
     loyalty.disconnect()
 }

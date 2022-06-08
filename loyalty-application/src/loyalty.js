@@ -106,7 +106,7 @@ class Loyalty {
         if (`${resultBuf}` !== '') {
             console.log(`*** Result: ${prettyJSONString(resultBuf.toString())}`);
         }
-        return resultBuf
+        return resultBuf.toString()
     }
 
     async getPoint(member){
