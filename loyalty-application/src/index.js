@@ -43,7 +43,6 @@ async function createUser(username, options) {
     const loyalty = await CreateLoyalty()
 
     let user = await loyalty.createUser(username)
-    user = JSON.parse(user)
     console.log('🌿  Created a new user : ',user)
 
     alignOutput([
