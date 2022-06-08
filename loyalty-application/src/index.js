@@ -11,7 +11,6 @@ const chalk = require('chalk')
 const colorize = require('json-colorizer')
 const config = require('getconfig')
 const {CreateLoyalty} = require('./loyalty')
-const {use} = require("chai");
 
 const colorizeOptions = {
     pretty: true,

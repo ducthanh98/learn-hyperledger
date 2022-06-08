@@ -88,8 +88,8 @@ class Loyalty {
     }
 
     async createUser(username){
-        console.log('\n--> Submit Transaction: MintWithTokenURI, creates new NFT with tokenId, tokenURI arguments');
-        const resultBuf = await this.contract.submitTransaction('CreateMember', {accountNumber: `${Date.now()}`,username});
+        console.log('\n--> Submit Transaction: CreateMember, creates new member with tokenId, tokenURI arguments');
+        const resultBuf = await this.contract.submitTransaction('CreateMember', JSON.stringify({accountNumber: `${Date.now()}`,username}));
         console.log('*** Result: committed');
         if (`${resultBuf}` !== '') {
             console.log(`*** Result: ${prettyJSONString(resultBuf.toString())}`);
