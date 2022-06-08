@@ -115,7 +115,7 @@ class Loyalty {
         userPoint = JSON.parse(userPoint)
 
         let userLog = await this.contract.evaluateTransaction('EarnPointsTransactionsInfo', 'member',member);
-        userLog = JSON.parse(userLog)
+        userLog = JSON.parse(userLog.toString())
 
         return {userPoint,userLog}
     }
