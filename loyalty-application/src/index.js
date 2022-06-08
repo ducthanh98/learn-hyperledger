@@ -31,6 +31,16 @@ async function main() {
         .description('create a new user')
         .action(createUser)
 
+    program
+        .command('earn <member> <points>')
+        .description('Earn point')
+        .action(earnPoint)
+
+    program
+        .command('get <member>')
+        .description('Get the point of membership ')
+        .action(getPoint)
+
     const rootDir = path.join(__dirname, '..')
     process.chdir(rootDir)
 
@@ -49,6 +59,36 @@ async function createUser(username, options) {
         ['Account Number ID:', chalk.green(user.accountNumber)],
         ['Username:', chalk.blue(user.username)],
     ])
+    loyalty.disconnect()
+}
+
+async function earnPoint( member,points) {
+    const loyalty = await CreateLoyalty()
+
+    const result = await loyalty.earnPoint({member ,points})
+    console.log('🌿  Earn point : ', result)
+
+    loyalty.disconnect()
+}
+async function getPoint( member) {
+    const loyalty = await CreateLoyalty()
+
+    const {userPoint,userLog} = await loyalty.getPoint(member)
+    console.log('🌿  Get User Info : ')
+    alignOutput([
+        ['Point:', chalk.green(userPoint)],
+        ['Logs:', chalk.blue(userLog)],
+    ])
+
+    loyalty.disconnect()
+}
+
+async function getUser( member,points) {
+    const loyalty = await CreateLoyalty()
+
+    const result = await loyalty.earnPoint({member ,points})
+    console.log('🌿  Earn point : ', result)
+
     loyalty.disconnect()
 }
 

@@ -62,6 +62,7 @@ class Loyalty {
             identity: config.org1UserId,
             discovery: { enabled: true, asLocalhost: true } // using asLocalhost as this gateway is using a fabric network deployed locally
         });
+        this.gateway = gateway
 
         // Build a network instance based on the channel where the smart contract is deployed
         this.network = await gateway.getNetwork(config.channelName)
@@ -88,7 +89,7 @@ class Loyalty {
     }
 
     async createUser(username){
-        console.log('\n--> Submit Transaction: CreateMember, creates new member with tokenId, tokenURI arguments');
+        console.log('\n--> Submit Transaction: CreateMember');
         const user = {accountNumber: `${Date.now()}`,username}
         const resultBuf = await this.contract.submitTransaction('CreateMember', JSON.stringify(user));
         console.log('*** Result: committed');
@@ -96,6 +97,27 @@ class Loyalty {
             console.log(`*** Result: ${prettyJSONString(resultBuf.toString())}`);
         }
         return user
+    }
+
+    async earnPoint(options){
+        console.log('\n--> Submit Transaction: EarnPoints');
+        const resultBuf = await this.contract.submitTransaction('EarnPoints', JSON.stringify(options));
+        console.log('*** Result: committed');
+        if (`${resultBuf}` !== '') {
+            console.log(`*** Result: ${prettyJSONString(resultBuf.toString())}`);
+        }
+        return resultBuf
+    }
+
+    async getPoint(member){
+        console.log('\n--> Evaluate Transaction: EarnPoints');
+        let userPoint = await this.contract.evaluateTransaction('GetState', member);
+        userPoint = JSON.parse(userPoint)
+
+        let userLog = await this.contract.evaluateTransaction('EarnPointsTransactionsInfo', 'member',member);
+        userLog = JSON.parse(userLog)
+
+        return {userPoint,userLog}
     }
 
 
