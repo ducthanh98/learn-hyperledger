@@ -53,15 +53,23 @@ class CustomerLoyalty extends Contract {
 
         let member = await ctx.stub.getState(earnPoints.member);
         console.log('==== EarnPoints member  ==== 1',earnPoints.member,member.toString())
-
-        member = JSON.parse(member.toString());
+        member = member.toString()
+        if( member === '') {
+            member = []
+        } else {
+            member = JSON.parse(member);
+        }
         member.points += earnPoints.points;
         await ctx.stub.putState(earnPoints.member, Buffer.from(JSON.stringify(member)));
 
         let earnPointsTransactions = await ctx.stub.getState(earnPointsTransactionsKey);
         console.log('==== EarnPoints earnPointsTransactions  ==== ',earnPoints.member,earnPointsTransactions.toString())
-
-        earnPointsTransactions = JSON.parse(earnPointsTransactions.toString());
+        earnPointsTransactions = earnPointsTransactions.toString()
+        if( earnPointsTransactions === '') {
+            earnPointsTransactions = []
+        } else {
+            earnPointsTransactions = JSON.parse(earnPointsTransactions);
+        }
         earnPointsTransactions.push(earnPoints);
         await ctx.stub.putState(earnPointsTransactionsKey, Buffer.from(JSON.stringify(earnPointsTransactions)));
 
@@ -94,6 +102,12 @@ class CustomerLoyalty extends Contract {
     async EarnPointsTransactionsInfo(ctx, userType, userId) {
         let transactions = await ctx.stub.getState(earnPointsTransactionsKey);
         console.log('==== EarnPointsTransactionsInfo  ==== ',userId,transactions.toString())
+        transactions = transactions.toString()
+        if( transactions === '') {
+            transactions = []
+        } else {
+            transactions = JSON.parse(transactions);
+        }
         transactions = JSON.parse(transactions.toString());
         let userTransactions = [];
 
@@ -137,7 +151,7 @@ class CustomerLoyalty extends Contract {
     // get the state from key
     async GetState(ctx, key) {
         let data = await ctx.stub.getState(key);
-        console.log('==== Get State  ==== 9999 ',key,data.toString())
+        console.log('==== Get State  ==== 2222 ',key,data.toString())
 
         let jsonData = JSON.parse(data.toString());
         return JSON.stringify(jsonData);
