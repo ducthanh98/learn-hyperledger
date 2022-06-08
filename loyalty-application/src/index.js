@@ -42,8 +42,8 @@ async function main() {
 async function createUser(username, options) {
     const loyalty = await CreateLoyalty()
 
-    let user = await loyalty.createUser(username)
-    console.log('🌿  Created a new user : ',user)
+    const user = await loyalty.createUser(username)
+    console.log('🌿  Created a new user : ')
 
     alignOutput([
         ['Account Number ID:', chalk.green(user.accountNumber)],

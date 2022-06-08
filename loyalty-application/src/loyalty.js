@@ -89,11 +89,13 @@ class Loyalty {
 
     async createUser(username){
         console.log('\n--> Submit Transaction: CreateMember, creates new member with tokenId, tokenURI arguments');
-        const resultBuf = await this.contract.submitTransaction('CreateMember', JSON.stringify({accountNumber: `${Date.now()}`,username}));
+        const user = {accountNumber: `${Date.now()}`,username}
+        const resultBuf = await this.contract.submitTransaction('CreateMember', JSON.stringify(user));
         console.log('*** Result: committed');
         if (`${resultBuf}` !== '') {
             console.log(`*** Result: ${prettyJSONString(resultBuf.toString())}`);
         }
+        return user
     }
 
 
