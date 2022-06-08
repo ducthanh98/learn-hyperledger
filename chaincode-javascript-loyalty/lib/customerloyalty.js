@@ -89,7 +89,7 @@ class CustomerLoyalty extends Contract {
     // Get earn points transactions of the particular member or partner
     async EarnPointsTransactionsInfo(ctx, userType, userId) {
         let transactions = await ctx.stub.getState(earnPointsTransactionsKey);
-        transactions = JSON.parse(transactions);
+        transactions = JSON.parse(transactions.toString());
         let userTransactions = [];
 
         for (let transaction of transactions) {

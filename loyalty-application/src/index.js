@@ -76,7 +76,7 @@ async function getPoint( member) {
     const {userPoint,userLog} = await loyalty.getPoint(member)
     console.log('🌿  Get User Info : ')
     alignOutput([
-        ['Point:', chalk.green(userPoint)],
+        ['Point:', chalk.green(JSON.stringify(userPoint))],
         ['Logs:', chalk.blue(userLog)],
     ])
 
