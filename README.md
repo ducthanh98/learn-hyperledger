@@ -120,11 +120,13 @@ sudo su
 curl -sSL https://bit.ly/2ysbOFE | bash -s
 cd fabric-samples/test-network
 ./network.sh up createChannel -ca -c mychannel -s couchdb 
-./network.sh deployCC -ccn token_erc721 -ccp /root/nft-erc721/chaincode-javascript -ccl javascript
+
+git clone https://github.com/ducthanh98/learn-hyperledger
+
+./network.sh deployCC -ccn token_erc721 -ccp /root/learn-hyperledger/chaincode-javascript -ccl javascript
 ```
 ## Mint NFT
 ```
-git clone https://github.com/ducthanh98/nft-erc721
 cd ./application
 npm install
 npm link
@@ -143,3 +145,18 @@ export MINTER="x509::/OU=org1/OU=client/OU=department1/CN=minter::/C=US/ST=North
 export RECIPIENT="noExistOwner"
 minty transfer 1641904109263 "$MINTER" "$RECIPIENT"
 ```
+## Loyalty
+```
+cd /root/learn-hyperledger/loyalty-application
+./network.sh deployCC -ccn customer_loyalty -ccp /root/learn-hyperledger/chaincode-javascript-loyalty -ccl javascript
+
+- Create User 
+node src/index.js create thanhld
+- Earn point
+node src/index.js earn 1654659364799 50
+- Get user point 
+node src/index.js get 1654659364799
+
+```
+
+# [Cập nhật chaincode](https://hyperledger-fabric.readthedocs.io/en/release-2.2/deploy_chaincode.html?highlight=smart%20contract#upgrading-a-smart-contract)
