@@ -73,7 +73,7 @@ class CustomerLoyalty extends Contract {
         earnPointsTransactions.push(earnPoints);
         await ctx.stub.putState(earnPointsTransactionsKey, Buffer.from(JSON.stringify(earnPointsTransactions)));
 
-        return JSON.stringify(earnPoints);
+        return JSON.stringify(member);
     }
 
     // Record a transaction where a member redeems points
@@ -108,7 +108,6 @@ class CustomerLoyalty extends Contract {
         } else {
             transactions = JSON.parse(transactions);
         }
-        transactions = JSON.parse(transactions.toString());
         let userTransactions = [];
 
         for (let transaction of transactions) {
