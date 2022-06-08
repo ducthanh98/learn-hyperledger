@@ -25,7 +25,7 @@ class CustomerLoyalty extends Contract {
     // Add a member on the ledger
     async CreateMember(ctx, member) {
         member = JSON.parse(member);
-
+        console.log('==== Put State  ==== ',member.accountNumber,member)
         await ctx.stub.putState(member.accountNumber, Buffer.from(JSON.stringify(member)));
 
         return JSON.stringify(member);
