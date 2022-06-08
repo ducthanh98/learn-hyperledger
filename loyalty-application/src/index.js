@@ -77,7 +77,7 @@ async function getPoint( member) {
     console.log('🌿  Get User Info : ')
     alignOutput([
         ['Point:', chalk.green(JSON.stringify(userPoint))],
-        ['Logs:', chalk.blue(JSON.stringify(userLog)],
+        ['Logs:', chalk.blue(JSON.stringify(userLog))],
     ])
 
     loyalty.disconnect()
