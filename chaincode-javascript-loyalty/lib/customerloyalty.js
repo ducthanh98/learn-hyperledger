@@ -52,7 +52,7 @@ class CustomerLoyalty extends Contract {
         earnPoints.transactionId = ctx.stub.txId;
 
         let member = await ctx.stub.getState(earnPoints.member);
-        console.log('==== EarnPoints member  ==== ',earnPoints.member,member.toString())
+        console.log('==== EarnPoints member  ==== 1',earnPoints.member,member.toString())
 
         member = JSON.parse(member.toString());
         member.points += earnPoints.points;
