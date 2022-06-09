@@ -160,3 +160,9 @@ node src/index.js get 1654659364799
 ```
 
 # [Cập nhật chaincode](https://hyperledger-fabric.readthedocs.io/en/release-2.2/deploy_chaincode.html?highlight=smart%20contract#upgrading-a-smart-contract)
+
+# Motior
+```
+cd fabric-samples/test-network
+./monitordocker.sh
+```
