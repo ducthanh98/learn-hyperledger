@@ -163,6 +163,16 @@ node src/index.js get 1654659364799
 
 # Motior
 ```
-cd fabric-samples/test-network
-./monitordocker.sh
+cd explorer
+
+# Copy folder organizations từ  farbic-samples
+cp -r /root/fabric-samples/test-network/organizations/ .
+cp ./explorer/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/cert.pem ./explorer/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem
+
+# file 524427df6001019c6d166b93fc397d23328e9c219e9dad91a8617ab348845226_sk thay đổi theo mỗi máy máyy
+
+cp ./explorer/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/524427df6001019c6d166b93fc397d23328e9c219e9dad91a8617ab348845226_sk ./explorer/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/priv_sk
+
+docker-compose up -d
+
 ```
